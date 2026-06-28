@@ -1,0 +1,38 @@
+<changeSet id="005-create-product-ingredient" author="jp">
+
+    <createTable tableName="product_ingredient">
+
+        <column name="product_id" type="UUID">
+            <constraints nullable="false"/>
+        </column>
+
+        <column name="ingredient_id" type="UUID">
+            <constraints nullable="false"/>
+        </column>
+
+        <column name="quantity_used" type="DECIMAL(10,3)">
+            <constraints nullable="false"/>
+        </column>
+
+    </createTable>
+
+    <addPrimaryKey
+            tableName="product_ingredient"
+            columnNames="product_id, ingredient_id"
+            constraintName="pk_product_ingredient"/>
+
+    <addForeignKeyConstraint
+            baseTableName="product_ingredient"
+            baseColumnNames="product_id"
+            referencedTableName="product"
+            referencedColumnNames="id"
+            constraintName="fk_product_ingredient_product"/>
+
+    <addForeignKeyConstraint
+            baseTableName="product_ingredient"
+            baseColumnNames="ingredient_id"
+            referencedTableName="ingredient"
+            referencedColumnNames="id"
+            constraintName="fk_product_ingredient_ingredient"/>
+
+</changeSet>
