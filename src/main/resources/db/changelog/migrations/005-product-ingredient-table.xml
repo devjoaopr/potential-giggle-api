@@ -1,38 +1,48 @@
-<changeSet id="005-create-product-ingredient" author="jp">
+<?xml version="1.0" encoding="UTF-8"?>
 
-    <createTable tableName="product_ingredient">
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-        <column name="product_id" type="UUID">
-            <constraints nullable="false"/>
-        </column>
+    <changeSet id="005-create-product-ingredient" author="devjoaopr">
 
-        <column name="ingredient_id" type="UUID">
-            <constraints nullable="false"/>
-        </column>
+        <createTable tableName="product_ingredient">
 
-        <column name="quantity_used" type="DECIMAL(10,3)">
-            <constraints nullable="false"/>
-        </column>
+            <column name="product_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
 
-    </createTable>
+            <column name="ingredient_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
 
-    <addPrimaryKey
-            tableName="product_ingredient"
-            columnNames="product_id, ingredient_id"
-            constraintName="pk_product_ingredient"/>
+            <column name="quantity_used" type="DECIMAL(10,3)">
+                <constraints nullable="false"/>
+            </column>
 
-    <addForeignKeyConstraint
-            baseTableName="product_ingredient"
-            baseColumnNames="product_id"
-            referencedTableName="product"
-            referencedColumnNames="id"
-            constraintName="fk_product_ingredient_product"/>
+        </createTable>
 
-    <addForeignKeyConstraint
-            baseTableName="product_ingredient"
-            baseColumnNames="ingredient_id"
-            referencedTableName="ingredient"
-            referencedColumnNames="id"
-            constraintName="fk_product_ingredient_ingredient"/>
+        <addPrimaryKey
+                tableName="product_ingredient"
+                columnNames="product_id, ingredient_id"
+                constraintName="pk_product_ingredient"/>
 
-</changeSet>
+        <addForeignKeyConstraint
+                baseTableName="product_ingredient"
+                baseColumnNames="product_id"
+                referencedTableName="product"
+                referencedColumnNames="id"
+                constraintName="fk_product_ingredient_product"/>
+
+        <addForeignKeyConstraint
+                baseTableName="product_ingredient"
+                baseColumnNames="ingredient_id"
+                referencedTableName="ingredient"
+                referencedColumnNames="id"
+                constraintName="fk_product_ingredient_ingredient"/>
+
+    </changeSet>
+</databaseChangeLog>
